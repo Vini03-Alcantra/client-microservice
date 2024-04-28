@@ -23,7 +23,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity @Table
+@Entity @Table(name = "clients")
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
 public class Client {
@@ -54,14 +54,5 @@ public class Client {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<PhoneClient> phones;
-
-
-    public Client(ClientInputDTO clientInput){
-        setFirstName(firstName);
-        setLastName(lastName);
-        setDocument(document);
-        setEmail(email);
-        setBirthday(birthday);        
-    }
 
 }

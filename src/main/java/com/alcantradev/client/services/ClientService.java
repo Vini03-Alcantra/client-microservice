@@ -1,16 +1,22 @@
 package com.alcantradev.client.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
 import com.alcantradev.client.domain.client.Client;
 import com.alcantradev.client.infra.client.dto.input.ClientInputDTO;
 import com.alcantradev.client.infra.client.dto.output.ClientOutputDTO;
 import com.alcantradev.client.repositories.IClientRepository;
 
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
 public class ClientService {
-    private IClientRepository clientRepository;
+    private final IClientRepository clientRepository;
 
     public void create(ClientInputDTO clientInput){
         Client client = new Client();
@@ -18,8 +24,19 @@ public class ClientService {
         clientRepository.save(client);
     }
 
-    public ClientOutputDTO getClientByCpf(String cpf){
-        Optional<Client> client = clientRepository.findByCpf(cpf);
+    public ClientOutputDTO findAllClients(){
+        List<Client> client = clientRepository.findAll();
+        if(client.isEmpty())
+            return null;
+        
+        ClientOutputDTO clientOutputDTO = new ClientOutputDTO();
+        BeanUtils.copyProperties(client, clientOutputDTO);
+
+        return clientOutputDTO;
+    }
+
+    public ClientOutputDTO getClientByCpf(String document){
+        Optional<Client> client = clientRepository.findByDocument(document);
         if(!client.isPresent())
             return null;
         
@@ -39,4 +56,6 @@ public class ClientService {
 
         return clientOutputDTO;
     }
+
+
 }

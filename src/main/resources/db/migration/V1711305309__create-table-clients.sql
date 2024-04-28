@@ -1,7 +1,7 @@
 create table clients (
     id bigserial NOT NULL,
-    firstName varchar NOT NULL,
-    lastName varchar NOT NULL,
+    first_name varchar NOT NULL,
+    last_name varchar NOT NULL,
     document varchar NOT NULL,
     email varchar NOT NULL,
     birthday date NOT NULL,
