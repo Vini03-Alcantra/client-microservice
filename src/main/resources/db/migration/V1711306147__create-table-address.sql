@@ -4,7 +4,7 @@ create table address (
     neighborhood varchar,
     city varchar,
     cep varchar,
-    numberHouse varchar,
+    number_house varchar,
     complement varchar,
     client_id int,
     created_at timestamp without time zone,

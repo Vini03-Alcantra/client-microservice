@@ -1,6 +1,7 @@
 package com.alcantradev.client.infra.client.dto.input;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,5 +23,5 @@ public class ClientInputDTO {
 
     private AddressInputDTO address;
 
-    private PhoneClientInputDTO phone;
+    private List<PhoneClientInputDTO> phone;
 }

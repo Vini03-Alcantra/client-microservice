@@ -12,7 +12,13 @@ import com.alcantradev.client.infra.client.dto.input.PhoneClientInputDTO;
 public interface GeneratorMapper {
     AddressInputDTO addressToAddressInputDto(Address address);
 
+    Address addressInputDTOToAddress(AddressInputDTO addressInputDTO);
+
     ClientInputDTO clientToClientInputDTO(Client client);
 
+    Client clientInputDTOToClient(ClientInputDTO clientInputDTO);
+
     PhoneClientInputDTO phoneToPhoneClientInputDTO(PhoneClient phone);
+
+    PhoneClient phoneClientInputDTOToPhoneClient(PhoneClientInputDTO phoneClientInputDTO); 
 }
