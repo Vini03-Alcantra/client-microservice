@@ -1,5 +1,6 @@
 package com.alcantradev.client.controllers.client;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,16 +15,25 @@ import com.alcantradev.client.services.ClientService;
 
 import lombok.RequiredArgsConstructor;
 
+
 @RestController
 @RequestMapping(value = "/client")
 @RequiredArgsConstructor
 public class ClientResource {
     private final ClientService clientService;
-
+    
+    @Value("${via.cep.url}")
+    public String url;
+    
     @PostMapping()
     public ResponseEntity<Void> create(@RequestBody ClientInputDTO client){
         clientService.create(client);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("detailsc")
+    public ResponseEntity<String> getClientsDetais(){
+        return ResponseEntity.ok().body(url);
     }
 
     @GetMapping
